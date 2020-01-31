@@ -31,7 +31,7 @@ async function run() {
         const deleteReleaseResponse = await github.repos.deleteRelease({
           owner,
           repo,
-          id: getReleaseByTagResponse.data.id
+          release_id: getReleaseByTagResponse.data.id
         });
       }
 
