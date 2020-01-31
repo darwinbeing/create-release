@@ -19,6 +19,26 @@ async function run() {
     const draft = core.getInput('draft', { required: false }) === 'true';
     const prerelease = core.getInput('prerelease', { required: false }) === 'true';
 
+    try {
+      //First, try to get the release, which will only work if it's already published.
+        const getReleaseByTagResponse = await github.repos.getReleaseByTag({
+        owner,
+        repo,
+        tag: tag
+      });
+
+      if(getReleaseByTagResponse.data != null) {
+        github.repos.deleteRelease({
+          owner,
+          repo,
+          id: getReleaseByTagResponse.data.id,
+        });
+      }
+
+    } catch (error) {
+      console.log(error)
+    }
+
     // Create a release
     // API Documentation: https://developer.github.com/v3/repos/releases/#create-a-release
     // Octokit Documentation: https://octokit.github.io/rest.js/#octokit-routes-repos-create-release
