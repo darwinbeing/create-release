@@ -28,15 +28,15 @@ async function run() {
       });
 
       if(getReleaseByTagResponse.data != null) {
-        github.repos.deleteRelease({
+        const deleteReleaseResponse = await github.repos.deleteRelease({
           owner,
           repo,
-          id: getReleaseByTagResponse.data.id,
+          id: getReleaseByTagResponse.data.id
         });
       }
 
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
 
     // Create a release
