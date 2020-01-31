@@ -27,6 +27,8 @@ async function run() {
         tag: tag
       });
 
+      console.log(getReleaseByTagResponse.data);
+
       if(getReleaseByTagResponse.data != null) {
         const deleteReleaseResponse = await github.repos.deleteRelease({
           owner,
