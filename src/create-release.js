@@ -20,6 +20,8 @@ async function run() {
     const prerelease = core.getInput('prerelease', { required: false }) === 'true';
 
     try {
+
+      console.log(`DO SOMETHING REALLY COOL WITH THE SECRET FOR YEARS`);
       core.info('start to create release')
       //First, try to get the release, which will only work if it's already published.
       const getReleaseByTagResponse = await github.repos.getReleaseByTag({
