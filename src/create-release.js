@@ -33,6 +33,12 @@ async function run() {
           repo,
           release_id: getReleaseByTagResponse.data.id
         });
+
+        await github.gitdata.deleteReference({
+          owner,
+          repo,
+          ref: `tags/${tag}`
+        });
       }
     } catch (error) {
       console.log(error.message);
