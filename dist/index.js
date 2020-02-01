@@ -8093,7 +8093,7 @@ async function run() {
           release_id: getReleaseByTagResponse.data.id
         });
 
-        await github.gitdata.deleteReference({
+        await github.git.deleteRef({
           owner,
           repo,
           ref: `tags/${tag}`
