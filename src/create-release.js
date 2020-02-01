@@ -20,33 +20,28 @@ async function run() {
     const prerelease = core.getInput('prerelease', { required: false }) === 'true';
 
     try {
-
       console.log(`DO SOMETHING REALLY COOL WITH THE SECRET FOR YEARS`);
-      core.info('start to create release')
-      //First, try to get the release, which will only work if it's already published.
+      core.info('start to create release');
+      // First, try to get the release, which will only work if it's already published.
       const getReleaseByTagResponse = await github.repos.getReleaseByTag({
         owner,
         repo,
-        tag: tag
+        tag
       });
 
-      core.info("111")
-
+      core.info('111');
 
       if (getReleaseByTagResponse && getReleaseByTagResponse.data) {
-        const deleteReleaseResponse = await github.repos.deleteRelease({
+        await github.repos.deleteRelease({
           owner,
           repo,
           release_id: getReleaseByTagResponse.data.id
         });
       }
 
-      core.info("222")
-
-
+      core.info('222');
     } catch (error) {
-
-      core.info(error.message)
+      core.info(error.message);
 
       console.log(error);
     }
