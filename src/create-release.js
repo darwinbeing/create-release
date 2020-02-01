@@ -27,9 +27,9 @@ async function run() {
         tag: tag
       });
 
-      console.log(getReleaseByTagResponse.data);
+      core.debug("111")
 
-      if(getReleaseByTagResponse.data != null) {
+      if(getReleaseByTagResponse && getReleaseByTagResponse.data) {
         const deleteReleaseResponse = await github.repos.deleteRelease({
           owner,
           repo,
@@ -37,7 +37,14 @@ async function run() {
         });
       }
 
+      core.debug("222")
+
+
     } catch (error) {
+      core.debug("333")
+
+      core.debug(error)
+
       console.log(error);
     }
 
