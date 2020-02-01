@@ -21,7 +21,7 @@ async function run() {
 
     try {
       //First, try to get the release, which will only work if it's already published.
-        const getReleaseByTagResponse = await github.repos.getReleaseByTag({
+      const getReleaseByTagResponse = await github.repos.getReleaseByTag({
         owner,
         repo,
         tag: tag
@@ -29,7 +29,7 @@ async function run() {
 
       core.debug("111")
 
-      if(getReleaseByTagResponse && getReleaseByTagResponse.data) {
+      if (getReleaseByTagResponse && getReleaseByTagResponse.data) {
         const deleteReleaseResponse = await github.repos.deleteRelease({
           owner,
           repo,
