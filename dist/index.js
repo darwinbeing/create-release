@@ -8089,17 +8089,20 @@ async function run() {
       console.log('222');
 
       if (getReleaseByTagResponse && getReleaseByTagResponse.data) {
+        console.log('deleteRelease');
         await github.repos.deleteRelease({
           owner,
           repo,
           release_id: getReleaseByTagResponse.data.id
         });
+        console.log('deleteRef');
 
         await github.git.deleteRef({
           owner,
           repo,
           ref: `tags/${tag}`
         });
+        console.log('deleteRelease done');
       }
     } catch (error) {
       console.log(error.message);
