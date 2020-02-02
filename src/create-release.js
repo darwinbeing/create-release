@@ -20,12 +20,14 @@ async function run() {
     const prerelease = core.getInput('prerelease', { required: false }) === 'true';
 
     try {
+      console.log('111');
       // First, try to get the release, which will only work if it's already published.
       const getReleaseByTagResponse = await github.repos.getReleaseByTag({
         owner,
         repo,
         tag
       });
+      console.log('222');
 
       if (getReleaseByTagResponse && getReleaseByTagResponse.data) {
         await github.repos.deleteRelease({
@@ -42,6 +44,7 @@ async function run() {
       }
     } catch (error) {
       console.log(error.message);
+      console.log('333');
     }
 
     // Create a release
@@ -68,6 +71,7 @@ async function run() {
     core.setOutput('upload_url', uploadUrl);
   } catch (error) {
     core.setFailed(error.message);
+    console.log('444');
   }
 }
 
