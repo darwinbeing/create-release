@@ -20,37 +20,29 @@ async function run() {
     const prerelease = core.getInput('prerelease', { required: false }) === 'true';
 
     try {
-      console.log('111');
       // First, try to get the release, which will only work if it's already published.
       const getReleaseByTagResponse = await github.repos.getReleaseByTag({
         owner,
         repo,
         tag
       });
-      console.log('222');
 
       if (getReleaseByTagResponse && getReleaseByTagResponse.data) {
-        console.log('deleteRelease');
         await github.repos.deleteRelease({
           owner,
           repo,
           release_id: getReleaseByTagResponse.data.id
         });
-        console.log('deleteRef');
 
         await github.git.deleteRef({
           owner,
           repo,
           ref: `tags/${tag}`
         });
-        console.log('deleteRelease done');
       }
     } catch (error) {
       console.log(error.message);
-      console.log('333');
     }
-
-    console.log('555');
 
     // Create a release
     // API Documentation: https://developer.github.com/v3/repos/releases/#create-a-release
@@ -64,29 +56,18 @@ async function run() {
       draft,
       prerelease
     });
-    console.log('666');
-    console.log(createReleaseResponse.data);
 
     // Get the ID, html_url, and upload URL for the created Release from the response
     const {
       data: { id: releaseId, html_url: htmlUrl, upload_url: uploadUrl }
     } = createReleaseResponse;
-    console.log('888');
-    console.log(releaseId);
-    console.log(htmlUrl);
-    console.log(uploadUrl);
 
-    console.log('999');
     // Set the output variables for use by other actions: https://github.com/actions/toolkit/tree/master/packages/core#inputsoutputs
     core.setOutput('id', releaseId.toString());
-    console.log('aaa');
     core.setOutput('html_url', htmlUrl.toString());
-    console.log('bbb');
     core.setOutput('upload_url', uploadUrl.toString());
-    console.log('777');
   } catch (error) {
     core.setFailed(error.message);
-    console.log('444');
   }
 }
 
