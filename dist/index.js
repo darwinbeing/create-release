@@ -8130,6 +8130,7 @@ async function run() {
     const {
       data: { id: releaseId, html_url: htmlUrl, upload_url: uploadUrl }
     } = createReleaseResponse;
+    console.log('888');
 
     // Set the output variables for use by other actions: https://github.com/actions/toolkit/tree/master/packages/core#inputsoutputs
     core.setOutput('id', releaseId);
