@@ -65,6 +65,7 @@ async function run() {
       prerelease
     });
     console.log('666');
+    console.log(createReleaseResponse.data);
 
     // Get the ID, html_url, and upload URL for the created Release from the response
     const {
