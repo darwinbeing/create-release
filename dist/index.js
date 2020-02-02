@@ -8109,6 +8109,8 @@ async function run() {
       console.log('333');
     }
 
+    console.log('555');
+
     // Create a release
     // API Documentation: https://developer.github.com/v3/repos/releases/#create-a-release
     // Octokit Documentation: https://octokit.github.io/rest.js/#octokit-routes-repos-create-release
@@ -8121,6 +8123,7 @@ async function run() {
       draft,
       prerelease
     });
+    console.log('666');
 
     // Get the ID, html_url, and upload URL for the created Release from the response
     const {
@@ -8131,6 +8134,7 @@ async function run() {
     core.setOutput('id', releaseId);
     core.setOutput('html_url', htmlUrl);
     core.setOutput('upload_url', uploadUrl);
+    console.log('777');
   } catch (error) {
     core.setFailed(error.message);
     console.log('444');
