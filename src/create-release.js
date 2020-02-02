@@ -76,9 +76,12 @@ async function run() {
     console.log(htmlUrl);
     console.log(uploadUrl);
 
+    console.log('999');
     // Set the output variables for use by other actions: https://github.com/actions/toolkit/tree/master/packages/core#inputsoutputs
     core.setOutput('id', releaseId);
+    console.log('aaa');
     core.setOutput('html_url', htmlUrl);
+    console.log('bbb');
     core.setOutput('upload_url', uploadUrl);
     console.log('777');
   } catch (error) {
